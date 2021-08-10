@@ -9,6 +9,9 @@ const port = 3000;
 app.get('/',(req,res)=>{
     res.send('qualquer <b>merda!!</b>');
 });
+app.post('/sensores',(req,res)=>{
+    console.log(req.body);
+});
 
 app.listen(port, () => {
     console.log('Acessar http://localhost:3000');
