@@ -4,7 +4,7 @@ var WebSocketServer = require('websocket').server;
 var http = require('http');
 
 //Porta que o server irá escutar
-const port = 3001;
+const port = 3000;
 
 app.get('/',(req,res)=>{
     res.send('qualquer <b>merda!!</b>');
