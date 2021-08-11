@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const fs = require('fs').promises;
 const path = require('path');
-const caminhoArquivo = path.resolve(__dirname,'.' ,'teste.json');    
+const caminhoArquivo = path.resolve(__dirname,'.' ,'valores.json');    
 
 
 var WebSocketServer = require('websocket').server;
@@ -16,8 +16,8 @@ var valores = [];
 
     
 app.get('/sensores/:temp?/:humidade?/:adc?',(req,res)=>{
-    console.log(req.query.temp);
-    res.send(req.query);
+    
+      console.log(req.query.temp);
     //const json = req.query;
     
     valores[0] = req.query.temp;
@@ -26,14 +26,15 @@ app.get('/sensores/:temp?/:humidade?/:adc?',(req,res)=>{
     
     var valorEsp = [
 
-        {temperatura: valores[0]},
-        {humidade: valores[1]},
-        {adc: valores[2]},
+        { id:1, label:'temperatura', temperatura: valores[0]},
+        { id:2, label:'humidade',humidade: valores[1]},
+        { id:3, label:'adc',adc: valores[2]},
     ];
     
     const json = JSON.stringify(valorEsp);
 
     fs.writeFile(caminhoArquivo, json , { flag: 'w' });
+    res.sendFile('index.html');
 });
 /* app.post('/sensores',(req,res)=>{
     console.log(req.body);
