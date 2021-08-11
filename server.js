@@ -6,12 +6,13 @@ var http = require('http');
 //Porta que o server irá escutar
 const port = 3000;
 
-app.get('/',(req,res)=>{
-    res.send('qualquer <b>merda!!</b>');
+app.get('/sensores/:temp?/:humidade?/:adc?',(req,res)=>{
+    console.log(req.query.temp);
+    res.send(req.query);
 });
-app.post('/sensores',(req,res)=>{
+/* app.post('/sensores',(req,res)=>{
     console.log(req.body);
-});
+}); */
 
 app.listen(port, () => {
     console.log('Acessar http://localhost:3000');
